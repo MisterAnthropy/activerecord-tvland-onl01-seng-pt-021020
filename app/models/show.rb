@@ -3,8 +3,8 @@ class Show < ActiveRecord::Base
   has_many :actors, through: :characters
   belongs_to :network 
   def actors_list
-    actors.collect do {|actor| "#{actor.first_name} #{actor.last_name}"}.join(" ")
-    end
-   self.actor 
+   self.characters.map do |c|
+     "#{c.actor.full_name}"
+   end
   end
 end
